@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
 app.get('/time/:time', function(req, res) {
   // Add your code here
   const { time } = req.params;
-  req.json({ time });
+  res.json({ time });
 });
 
 app.listen(3000, function() {
