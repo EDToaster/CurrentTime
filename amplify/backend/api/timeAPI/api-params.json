@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/time",
+            "lambdaFunction": "timeFunc",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "timeAPI",
+    "apiName": "timeAPI",
+    "functionArns": [
+        {
+            "lambdaFunction": "timeFunc"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "currenttime-dev-20190611144631-authRole",
+        "unAuthRoleName": "currenttime-dev-20190611144631-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "timeFunc",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
