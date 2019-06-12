@@ -63,7 +63,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "currenttime-dev-20190611144631-deployment",
-					"S3Key": "amplify-builds/timeFunc-1560291841-latest-build.zip"
+					"S3Key": "amplify-builds/timeFunc-1560300906-latest-build.zip"
 				}
 			}
 		},

@@ -25,15 +25,35 @@ app.use(function(req, res, next) {
   next()
 });
 
-
+const axios = require("axios");
 /**********************
  * Example get method *
  **********************/
 
-app.get('/time/:time', function(req, res) {
+app.get('/time/:lat/:lng', (req, res) => {
   // Add your code here
-  const { time } = req.params;
-  res.json({ time });
+  const { lat, lng } = req.params;
+  const url = `https://api.sunrise-sunset.org/json?`;
+  axios.get(url, {
+    params: {
+      lat, lng, formatted: 0, date: "-1 days"
+    }
+  }).then((result) => {
+    const { results } = result.data;
+    const { sunrise, sunset } = results;
+    const sunriseDate = new Date(sunrise), sunsetDate = new Date(sunset);
+    const nowDate = new Date();
+
+    // assuming sunrise = 0 deg, sunset = 180 deg
+    const degreesPerMillisecond = 180.0 / (sunsetDate - sunriseDate);
+    const angle = (nowDate - sunriseDate) * degreesPerMillisecond;
+
+    const now = nowDate.toISOString();
+
+    return res.status(200).json({ sunrise, sunset, now, angle, degreesPerMillisecond } );
+  }).catch((err) => {
+    return res.status(500).json({ err });
+  });
 });
 
 app.listen(3000, function() {

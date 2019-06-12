@@ -12,3 +12,8 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.App-footer {
+  background-color: #484c54;
+  color: #909090;
+}

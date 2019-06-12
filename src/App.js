@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import Amplify, { API } from 'aws-amplify';
+import Amplify from 'aws-amplify';
+
+import { Main } from "./components/main";
+
 import awsconfig from './aws-exports';
 import './App.css';
 
 Amplify.configure(awsconfig);
 
 class App extends Component {
-  state = { time: 0 };
-
-  componentDidMount = async () => {
-    const time = Date.now();
-    const response = await API.get("timeAPI", `/time/${time}`);
-    console.log(response);
-  }
 
   render = () => {
     return (
       <div className="App">
         <header className="App-header">
-          <p>{ this.state.time }</p>
+          <Main/>
         </header>
+        <div className="App-footer"><span>uses </span><a href='https://sunrise-sunset.org/api'>sunrise-sunset api</a></div>
       </div>
     );
   }
